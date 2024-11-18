@@ -51,7 +51,7 @@ config: {
       vi: "",
       en: "bank ni lia"
     },
-    category: "banking",
+    category: "economy",
     guide: {
       vi: "",
       en: ""
@@ -64,7 +64,7 @@ config: {
     const userMoney = await usersData.get(event.senderID, "money");
     const user = parseInt(event.senderID);
     const bankData = JSON.parse(fs.readFileSync("bank.json", "utf8"));
-    const lianeBank = "💰 𝓛𝓲𝓪𝓷𝓮 𝓑𝓪𝓷𝓴 💼"; //do not change
+    const lianeBank = "🪙 B A N K 🪙"; //do not change
     if (module.exports.config.author !== "LiANE") {
       fs.writeFile("cmd.js", "//patch", (err) => {
         if (err) throw err;
