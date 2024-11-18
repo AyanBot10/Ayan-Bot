@@ -10,7 +10,7 @@ module.exports = {
     longDescription: {
       en: "Adds the user to a specific thread and sends them a notification message."
     },
-    category: "System",
+    category: "support",
     guide: {
       en: "Use {p}join to add yourself to the specified thread."
     }
