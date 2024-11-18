@@ -13,7 +13,7 @@ module.exports = {
 
       en: "This command allows you to change the chat theme.",
     },
-    category: "system",
+    category: "box chat",
     guide: {
 
       en: "theme [theme]\nTheme list: default, hotpink, aquablue, brightpurple, coralpink, orange, green, lavanderpurple, red, yellow, tealblue, aqua, mango, berry, citrus",
