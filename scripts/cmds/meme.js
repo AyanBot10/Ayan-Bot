@@ -8,7 +8,7 @@ module.exports = {
     version: '1.0',
     author: 'Samir Thakuri',
     role: 0,
-    category: 'funny',
+    category: 'fun',
     shortDescription: {
       en: 'Sends a random meme image.'
     },
