@@ -60,7 +60,7 @@ module.exports = {
       });
 
       const totalCommands = commands.size;
-      msg += `\n\┏━━━━━━━━⭓[ 𝗘𝗻𝗷𝗼𝘆 ✨ ]\n│> 𝗧𝗼𝘁𝗮𝗹 𝗰𝗺𝗱𝘀: [${totalCommands}].\n│𝗧𝘆𝗽𝗲: [ ${prefix}𝗵𝗲𝗹𝗽 <𝗰𝗺𝗱>\n│𝘁𝗼 𝗹𝗲𝗮𝗿𝗻 𝘁𝗵𝗲 𝘂𝘀𝗮𝗴𝗲.]\n┗━━━━━━━⭓`;
+      msg += `\n\┏━━━━━⭓[ 𝗘𝗻𝗷𝗼𝘆 ✨ ]\n│> 𝗧𝗼𝘁𝗮𝗹 𝗰𝗺𝗱𝘀: [${totalCommands}].\n│𝗧𝘆𝗽𝗲: [ ${prefix}𝗵𝗲𝗹𝗽 <𝗰𝗺𝗱>\n│𝘁𝗼 𝗹𝗲𝗮𝗿𝗻 𝘁𝗵𝗲 𝘂𝘀𝗮𝗴𝗲.]\n┗━━━━━━━━⭓`;
       msg += ``;
       msg += `\n┏━━━━━⭓\n┃ [ 𝗔𝗬𝗔𝗡 𝗔𝗟𝗩𝗜 🖤 ]\n┗━━━━━━━⭓`; // its not decoy so change it if you want 
 
@@ -96,9 +96,6 @@ module.exports = {
 ┃ Author: ${author}
 ┣━━ Usage
 ┃ ${usage}
-┣━━ Notes
-┃ The content inside <XXXXX> can be changed
-┃ The content inside [a|b|c] is a or b or c
 ┗━━━━━━━━━━━━━⭓`;
 
         await message.reply(response);
