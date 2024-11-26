@@ -4,7 +4,7 @@ module.exports.config = {
   role: 0,
   author: "ArYan",
   description: "Everyone is a autotime now ",
-  category: "AutoTime",
+  category: "box chat",
   countDown: 3,
 };
 
