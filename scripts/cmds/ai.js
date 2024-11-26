@@ -21,11 +21,11 @@ const sans = {
 
 module.exports = {
   config: {
-    name: "ask",
+    name: "ai",
     version: 1.0,
     author: "OtinXSandip",
     longDescription: "AI",
-    category: "ai",
+    category: "chat",
     guide: {
       en: "{p} questions",
     },
