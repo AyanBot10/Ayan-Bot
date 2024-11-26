@@ -109,7 +109,7 @@ module.exports = {
         role: 0,
         shortDescription: "play audio from youtube",
         longDescription: "play audio from youtube support audio recognition.",
-        category: "music",
+        category: "media",
         guide: "{p} audio videoname / reply to audio or video" 
     },
     onStart: function ({ api, event, args, message }) {
