@@ -12,7 +12,7 @@ module.exports = {
 				longDescription: {
 						en: ""
 				},
-				category: "",
+				category: "chat",
 				guide: {
 						en: "{pn}"
 				},
