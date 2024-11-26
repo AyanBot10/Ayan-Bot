@@ -4,8 +4,8 @@ const cmdUrlsJson = "https://raw.githubusercontent.com/ARYAN-AROHI-STORE/A4YA9-A
 const ITEMS_PER_PAGE = 10;
 
 module.exports.config = {
-  name: "cmdstore",
-  aliases: ["cs", "cmds"],
+  name: "cs",
+  aliases: ["cmdstore", "cmds"],
   author: "ARYAN 🐔",
   role: 0,
   version: "0.1",
@@ -13,7 +13,7 @@ module.exports.config = {
     en: "Commands Store of ArYan",
   },
   countDown: 3,
-  category: "goatbot",
+  category: "owner",
   guide: {
     en: "{pn} [command name | single character | page number]",
   },
