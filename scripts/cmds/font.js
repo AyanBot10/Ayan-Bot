@@ -209,7 +209,7 @@ module.exports = {
     shortDescription: 'Convert text to different fonts',
     longDescription:
       'Choose from various font styles like bold, italic, cursive, etc. and transform your text into a unique visual format.',
-    category: 'font',
+    category: 'utility',
     guide: '-font <font type> <text>',
   },
   onStart: async ({ event, api, args }) => {
