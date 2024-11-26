@@ -10,7 +10,7 @@ module.exports = {
             vi: "Lấy thông tin giờ cầu nguyện cho một địa điểm.",
             en: "Retrieve prayer times for a location."
         },
-        category: "Tools",
+        category: "tools",
         guide: {
             vi: "{pn} <địa điểm>",
             en: "{pn} <location>"
