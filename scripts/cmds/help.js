@@ -46,7 +46,7 @@ module.exports = {
 
       Object.keys(categories).forEach((category) => {
         if (category !== "info") {
-          msg += `\n┏━━━━━『  ${category.toUpperCase()}  』`;
+          msg += `\n┏━━━━━❯ ${category.toUpperCase()} ❮`;
 
 
           const names = categories[category].commands.sort();
@@ -55,12 +55,12 @@ module.exports = {
             msg += `\n│${cmds.join(" ".repeat(Math.max(1, 5 - cmds.join("").length)))}`;
           }
 
-          msg += `\n┗━━━━━━━━━━⭓`;
+          msg += `\n┗━━━━━━━━━━━⭓`;
         }
       });
 
       const totalCommands = commands.size;
-      msg += `\n\┏━━━━━⭓[ 𝗘𝗻𝗷𝗼𝘆 ✨ ]\n│> 𝗧𝗼𝘁𝗮𝗹 𝗰𝗺𝗱𝘀: [${totalCommands}].\n│𝗧𝘆𝗽𝗲: [ ${prefix}𝗵𝗲𝗹𝗽 <𝗰𝗺𝗱>\n│𝘁𝗼 𝗹𝗲𝗮𝗿𝗻 𝘁𝗵𝗲 𝘂𝘀𝗮𝗴𝗲.]\n┗━━━━━━━━⭓`;
+      msg += `\n\┏━━━━━⭓[ 𝗘𝗻𝗷𝗼𝘆 ✨ ]\n│> 𝗧𝗼𝘁𝗮𝗹 𝗰𝗺𝗱𝘀: [${totalCommands}].\n│𝗧𝘆𝗽𝗲: [ ${prefix}𝗵𝗲𝗹𝗽 <𝗰𝗺𝗱>\n│𝘁𝗼 𝗹𝗲𝗮𝗿𝗻 𝘁𝗵𝗲 𝘂𝘀𝗮𝗴𝗲.]\n┗━━━━━━━━━⭓`;
       msg += ``;
       msg += `\n┏━━━━━⭓\n┃ [ 𝗔𝗬𝗔𝗡 𝗔𝗟𝗩𝗜 🖤 ]\n┗━━━━━━━⭓`; // its not decoy so change it if you want 
 
