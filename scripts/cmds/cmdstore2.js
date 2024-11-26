@@ -4,10 +4,10 @@ const cmdUrlsJson = "https://raw.githubusercontent.com/Blankid018/D1PT0/main/cmd
 const ITEMS_PER_PAGE = 10;
 
 module.exports.config = {
-  name: "cmdstore2",
-  aliases: ["c", "cmds2"],
+  name: "c",
+  aliases: ["cmdstore2", "cmds2"],
   author: "Dipto",
-  role: 0,
+  role: 2,
   version: "6.9",
   description: {
     en: "Commands Store of Dipto",
