@@ -86,7 +86,7 @@ async function video(api, event, args, message) {
 
         writer.on('finish', () => {
             const videoStream = fs.createReadStream(path.join(__dirname, "cache", `${videoId}.mp4`));
-            message.reply({ body: `📹 Playing: ${title}`, attachment: videoStream });
+            message.reply({ body: `✨ Playing: ${title}`, attachment: videoStream });
             api.setMessageReaction("✅", event.messageID, () => {}, true);
         });
 
@@ -109,7 +109,7 @@ module.exports = {
         role: 0,
         shortDescription: "play video from youtube",
         longDescription: "play video from youtube support audio recognition.",
-        category: "music",
+        category: "media",
         guide: "{p} video videoname / reply to audio or video" 
     },
     onStart: function ({ api, event, args, message }) {
