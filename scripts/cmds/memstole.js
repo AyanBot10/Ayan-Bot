@@ -12,7 +12,7 @@ module.exports = {
 		longDescription: {
 			en: "stole all members of groupchat to the supportgc"
 		},
-		category: "𝗕𝗢𝗫",
+		category: "box chat",
 		guide: {
 			en: "{p}{n}"
 		}
