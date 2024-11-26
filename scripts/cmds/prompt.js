@@ -11,7 +11,7 @@ module.exports.config ={
     author: "dipto",
     countDown: 5,
     role: 0,
-    category: "media",
+    category: "image",
     description: " image to prompt",
     category: "tools",
     usages: "reply [image]"
