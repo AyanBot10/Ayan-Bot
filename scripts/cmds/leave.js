@@ -12,7 +12,7 @@ module.exports = {
     role: 2,
     shortDescription: "Bot will leave a group chat",
     longDescription: "",
-    category: "admin",
+    category: "owner",
     guide: {
       en: "{p}{n}",
     },
