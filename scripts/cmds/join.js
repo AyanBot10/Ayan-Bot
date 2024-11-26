@@ -11,7 +11,7 @@ module.exports = {
     role: 2,
     shortDescription: "Join the group that bot is in",
     longDescription: "",
-    category: "user",
+    category: "owner",
     guide: {
       en: "{p}{n}",
     },
