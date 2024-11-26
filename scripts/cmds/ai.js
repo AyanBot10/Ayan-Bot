@@ -40,16 +40,16 @@ module.exports = {
       }
       const prompt = event.body.substring(prefix.length).trim();
    if (!prompt) {
-        await message.reply("𝖧𝖾𝗅𝗅𝗈! 𝖧𝗈𝗐 𝖼𝖺𝗇 𝖨 𝖺𝗌𝗌𝗂𝗌𝗍 𝗒𝗈𝗎 𝗍𝗈𝖽𝖺𝗒?");
+        await message.reply("(⁠◍⁠•⁠ᴗ⁠•⁠◍⁠) | 𝙰𝚢𝚊𝚗 𝙰𝚒\n・──────────────・\n𝖧𝖾𝗅𝗅𝗈! 𝖧𝗈𝗐 𝖼𝖺𝗇 𝖨 𝖺𝗌𝗌𝗂𝗌𝗍 𝗒𝗈𝗎 𝗍𝗈𝖽𝖺𝗒?\n・───── >ᴗ< ──────・");
         return;
       }
 
 
-      const response = await axios.get(`https://sandipbaruwal.onrender.com/gemini?prompt=${encodeURIComponent(prompt)}`);
+      const response = await axios.get(`https://hercai.onrender.com/v3/hercai?question=${encodeURIComponent(prompt)}`);
       const answer = apply(response.data.reply,sans);
 
  
-    await message.reply({ body: `${answer}`,
+    await message.reply({ body: `(⁠◍⁠•⁠ᴗ⁠•⁠◍⁠) | 𝙰𝚢𝚊𝚗 𝙰𝚒\n・──────────────・\n${answer}\n・───── >ᴗ< ──────・`,
 });
 
    } catch (error) {
