@@ -10,7 +10,7 @@ module.exports = {
 		version: "1.3",
 		author: "NTKhang",
 		cooldowns: 5,
-		role: 1,
+		role: 2,
 		description: {
 			vi: "Tự đổi biệt danh cho thành viên mới vào nhóm chat",
 			en: "Auto change nickname of new member"
