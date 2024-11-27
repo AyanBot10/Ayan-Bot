@@ -1,6 +1,6 @@
 module.exports = {
  config: {
- name: "song",
+ name: "sing",
  version: "1.0",
  role: 0,
  author: "SKY",
