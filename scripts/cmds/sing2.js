@@ -1,13 +1,13 @@
 module.exports = {
  config: {
- name: "sing2",
+ name: "song",
  version: "1.0",
  role: 0,
  author: "SKY",
  cooldowns: 5,
  shortdescription: "download music from YouTube",
  longdescription: "",
- category: "music",
+ category: "media",
  usages: "{pn} music name",
  dependencies: {
  "fs-extra": "",
