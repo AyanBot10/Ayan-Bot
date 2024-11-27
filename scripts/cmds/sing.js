@@ -1,118 +1,122 @@
-const axios = require("axios");
-const fs = require('fs-extra');
-const path = require('path');
-const { getStreamFromURL, shortenURL, randomString } = global.utils;
-
-const API_KEYS = [
-    'b38444b5b7mshc6ce6bcd5c9e446p154fa1jsn7bbcfb025b3b',
-        '719775e815msh65471c929a0203bp10fe44jsndcb70c04bc42',
-
-        'a2743acb5amsh6ac9c5c61aada87p156ebcjsnd25f1ef87037',
-        '8e938a48bdmshcf5ccdacbd62b60p1bffa7jsn23b2515c852d',
-        'f9649271b8mshae610e65f24780cp1fff43jsn808620779631',
-        '8e906ff706msh33ffb3d489a561ap108b70jsne55d8d497698',
-
-        '4bd76967f9msh2ba46c8cf871b4ep1eab38jsn19c9067a90bb',
-];
-
-async function video(api, event, args, message) {
-    api.setMessageReaction("🕢", event.messageID, (err) => {}, true);
-    try {
-        let title = '';
-        let shortUrl = '';
-        let videoId = '';
-
-        const extractShortUrl = async () => {
-            const attachment = event.messageReply.attachments[0];
-            if (attachment.type === "video" || attachment.type === "audio") {
-                return attachment.url;
-            } else {
-                throw new Error("Invalid attachment type.");
-            }
-        };
-
-        const getRandomApiKey = () => {
-            const randomIndex = Math.floor(Math.random() * API_KEYS.length);
-            return API_KEYS[randomIndex];
-        };
-
-        if (event.messageReply && event.messageReply.attachments && event.messageReply.attachments.length > 0) {
-            shortUrl = await extractShortUrl();
-            const musicRecognitionResponse = await axios.get(`https://audio-recon-ahcw.onrender.com/kshitiz?url=${encodeURIComponent(shortUrl)}`);
-            title = musicRecognitionResponse.data.title;
-            const searchResponse = await axios.get(`https://youtube-kshitiz-gamma.vercel.app/yt?search=${encodeURIComponent(title)}`);
-            if (searchResponse.data.length > 0) {
-                videoId = searchResponse.data[0].videoId;
-            }
-
-            shortUrl = await shortenURL(shortUrl);
-        } else if (args.length === 0) {
-            message.reply("Please provide a video name or reply to a video or audio attachment.");
-            return;
-        } else {
-            title = args.join(" ");
-            const searchResponse = await axios.get(`https://youtube-kshitiz-gamma.vercel.app/yt?search=${encodeURIComponent(title)}`);
-            if (searchResponse.data.length > 0) {
-                videoId = searchResponse.data[0].videoId;
-            }
-
-            const videoUrlResponse = await axios.get(`https://yt-kshitiz.vercel.app/download?id=${encodeURIComponent(videoId)}&apikey=${getRandomApiKey()}`);
-            if (videoUrlResponse.data.length > 0) {
-                shortUrl = await shortenURL(videoUrlResponse.data[0]);
-            }
-        }
-
-        if (!videoId) {
-            message.reply("No video found for the given query.");
-            return;
-        }
-
-        const downloadResponse = await axios.get(`https://yt-kshitiz.vercel.app/download?id=${encodeURIComponent(videoId)}&apikey=${getRandomApiKey()}`);
-        const videoUrl = downloadResponse.data[0];
-
-        if (!videoUrl) {
-            message.reply("Failed to retrieve download link for the video.");
-            return;
-        }
-
-        const writer = fs.createWriteStream(path.join(__dirname, "cache", `${videoId}.mp3`));
-        const response = await axios({
-            url: videoUrl,
-            method: 'GET',
-            responseType: 'stream'
-        });
-
-        response.data.pipe(writer);
-
-        writer.on('finish', () => {
-            const videoStream = fs.createReadStream(path.join(__dirname, "cache", `${videoId}.mp3`));
-            message.reply({ body: `📹 Playing: ${title}`, attachment: videoStream });
-            api.setMessageReaction("✅", event.messageID, () => {}, true);
-        });
-
-        writer.on('error', (error) => {
-            console.error("Error:", error);
-            message.reply("Error downloading the video.");
-        });
-    } catch (error) {
-        console.error("Error:", error);
-        message.reply("An error occurred.");
-    }
-}
+const fs = require("fs-extra");
+const ytdl = require("@distube/ytdl-core");
+const yts = require("yt-search");
+const axios = require('axios');
+const tinyurl = require('tinyurl');
 
 module.exports = {
-    config: {
-        name: "sing", 
-        version: "1.0",
-        author: "Vex_Kshitiz",
-        countDown: 10,
-        role: 0,
-        shortDescription: "play audio from youtube",
-        longDescription: "play audio from youtube support audio recognition.",
-        category: "media",
-        guide: "{p} audio videoname / reply to audio or video" 
-    },
-    onStart: function ({ api, event, args, message }) {
-        return video(api, event, args, message);
+  config: {
+    name: "sing",
+    version: "1.3",
+    author: "JARiF",
+    countDown: 5,
+    role: 0,
+    category: "cute",
+  },
+
+  onStart: async function ({ api, event, message }) {
+    try {
+        if (event.type === "message_reply" && ["audio", "video"].includes(event.messageReply.attachments[0].type)) {
+            const attachmentUrl = event.messageReply.attachments[0].url;
+        const urls = await tinyurl.shorten(attachmentUrl) || args.join(' ');
+        const response = await axios.get(`https://www.api.vyturex.com/songr?url=${urls}`);
+
+        if (response.data && response.data.title) {
+          const song = response.data.title;
+          const originalMessage = await message.reply(`Searching for "${song}"...`);
+          const searchResults = await yts(song);
+
+          if (!searchResults.videos.length) {
+            return message.reply("Error: Song not found.");
+          }
+
+          const video = searchResults.videos[0];
+          const videoUrl = video.url;
+          const stream = ytdl(videoUrl, { filter: "audioonly" });
+          const fileName = `music.mp3`;
+          const filePath = `${__dirname}/tmp/${fileName}`;
+
+          stream.pipe(fs.createWriteStream(filePath));
+
+          stream.on('response', () => {
+            console.info('[DOWNLOADER]', 'Starting download now!');
+          });
+
+          stream.on('info', (info) => {
+            console.info('[DOWNLOADER]', `Downloading ${info.videoDetails.title} by ${info.videoDetails.author.name}`);
+          });
+
+          stream.on('end', async () => {
+            console.info('[DOWNLOADER] Downloaded');
+            if (fs.statSync(filePath).size > 87380608) {
+              fs.unlinkSync(filePath);
+              return message.reply('[ERR] The file could not be sent because it is larger than 83mb.');
+            }
+            const replyMessage = {
+              body: `Title: ${video.title}\nArtist: ${video.author.name}`,
+              attachment: fs.createReadStream(filePath),
+            };
+            await api.unsendMessage(originalMessage.messageID);
+            await message.reply(replyMessage, event.threadID, () => {
+              fs.unlinkSync(filePath);
+            });
+          });
+        } else {
+          return message.reply("Error: Song information not found.");
+        }
+      } else {
+        const input = event.body;
+        const text = input.substring(12);
+        const data = input.split(" ");
+
+        if (data.length < 2) {
+          return message.reply("Please put a song");
+        }
+
+        data.shift();
+        const song = data.join(" ");
+        const originalMessage = await message.reply(`Searching your song named "${song}"...`);
+        const searchResults = await yts(song);
+
+        if (!searchResults.videos.length) {
+          return message.reply("Error: Invalid request.");
+        }
+
+        const video = searchResults.videos[0];
+        const videoUrl = video.url;
+        const stream = ytdl(videoUrl, { filter: "audioonly" });
+        const fileName = `music.mp3`;
+        const filePath = `${__dirname}/tmp/${fileName}`;
+
+        stream.pipe(fs.createWriteStream(filePath));
+
+        stream.on('response', () => {
+          console.info('[DOWNLOADER]', 'Starting download now!');
+        });
+
+        stream.on('info', (info) => {
+          console.info('[DOWNLOADER]', `Downloading ${info.videoDetails.title} by ${info.videoDetails.author.name}`);
+        });
+
+        stream.on('end', async () => {
+          console.info('[DOWNLOADER] Downloaded');
+          if (fs.statSync(filePath).size > 26214400) {
+            fs.unlinkSync(filePath);
+            return message.reply('[ERR] The file could not be sent because it is larger than 25MB.');
+          }
+          const replyMessage = {
+            body: `Title: ${video.title}\nArtist: ${video.author.name}`,
+            attachment: fs.createReadStream(filePath),
+          };
+          await api.unsendMessage(originalMessage.messageID);
+          await message.reply(replyMessage, event.threadID, () => {
+            fs.unlinkSync(filePath);
+          });
+        });
+      }
+    } catch (error) {
+      console.error('[ERROR]', error);
+      message.reply("This song is not available.");
     }
+  },
 };
