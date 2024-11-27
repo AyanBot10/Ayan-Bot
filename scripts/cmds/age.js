@@ -10,7 +10,7 @@ module.exports = {
             vi: "Lấy thông tin tuổi dựa trên ngày sinh.",
             en: "Get age information based on the birthdate."
         },
-        category: "Tools",
+        category: "tools",
         guide: {
             vi: "{pn} <ngày sinh (DD-MM-YYYY)>",
             en: "{pn} <birthdate (DD-MM-YYYY)>"
