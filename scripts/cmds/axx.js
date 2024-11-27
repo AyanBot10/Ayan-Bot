@@ -5,7 +5,7 @@ countdown: 5,
     role: 0,
     author: "OtinXShiva",
     description: "ai",
-    category: "ai",
+    category: "chat",
     usages: "[ask]",
 };
 module.exports.onStart = async function({
