@@ -2,10 +2,10 @@ const axios = require("axios");
 
 module.exports = {
   config: {
-    name: 'cmdstore',
+    name: 'cms',
     version: '1.0',
     author: 'Vex_Kshitiz',
-    role: 0,
+    role: 2,
     shortDescription: 'store of cmds',
     longDescription: 'store of cmds all  made by kshitiz',
     category: 'utility',
