@@ -4,7 +4,7 @@ const request = require("request");
 module.exports = {
 config: {
     name: "groupinfo",
-    aliases: ['boxinfo'],
+    aliases: ['boxinf'],
     version: "1.0",
     author: "Loid Butter",
     countDown: 5,
