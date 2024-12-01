@@ -46,7 +46,7 @@ module.exports = {
 
       Object.keys(categories).forEach((category) => {
         if (category !== "info") {
-          msg += `\n┏━━━━❯ ${category.toUpperCase()} ❮`;
+          msg += `\n┏━━━❯ ${category.toUpperCase()} ❮`;
 
 
           const names = categories[category].commands.sort();
@@ -55,7 +55,7 @@ module.exports = {
             msg += `\n│${cmds.join(" ".repeat(Math.max(1, 5 - cmds.join("").length)))}`;
           }
 
-          msg += `\n┗━━━━━━━━━━━⭓`;
+          msg += `\n┗━━━━━━━━━━━⭓\n`;
         }
       });
 
