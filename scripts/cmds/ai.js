@@ -23,7 +23,7 @@ module.exports = {
   config: {
     name: "ai",
     version: 1.0,
-    author: "OtinXSandip",
+    author: "A Y A N",
     longDescription: "AI",
     category: "chat",
     guide: {
@@ -46,7 +46,7 @@ module.exports = {
 
 
       const response = await axios.get(`https://hercai.onrender.com/v3/hercai?question=${encodeURIComponent(prompt)}`);
-      const answer = apply(response.data.reply,sans);
+      const answer = response.data.reply;
 
  
     await message.reply({ body: `(⁠◍⁠•⁠ᴗ⁠•⁠◍⁠) | 𝙰𝚢𝚊𝚗 𝙰𝚒\n・──────────────・\n${answer}\n・───── >ᴗ< ──────・`,
