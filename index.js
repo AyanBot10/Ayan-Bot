@@ -36,17 +36,3 @@ function startProject() {
 }
 
 startProject();
-
-const express = require('express');
-const app = express();
-
-// Define a route for testing
-app.get('/', (req, res) => {
-  res.send('App is running!');
-});
-
-// Bind the app to a port
-const PORT = process.env.PORT || 3000; // Use the PORT environment variable or default to 3000
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
